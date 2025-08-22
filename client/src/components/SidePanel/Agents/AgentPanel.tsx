@@ -72,7 +72,6 @@ export default function AgentPanel() {
   const models = useMemo(() => modelsQuery.data ?? {}, [modelsQuery.data]);
   const methods = useForm<AgentForm>({
     defaultValues: getDefaultAgentFormValues(),
-    mode: 'onChange',
   });
 
   const { control, handleSubmit, reset } = methods;

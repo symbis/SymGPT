@@ -39,7 +39,11 @@ function AuthLayout({
         <div className="mx-auto sm:max-w-sm">
           <ErrorMessage>
             {localize('com_auth_error_invalid_reset_token')}{' '}
-            <a className="font-semibold text-green-600 hover:underline" href="/forgot-password">
+            <a
+              className="font-semibold hover:underline"
+              href="/forgot-password"
+              style={{ color: '#94a807' }}
+            >
               {localize('com_auth_click_here')}
             </a>{' '}
             {localize('com_auth_to_try_again')}
@@ -62,7 +66,7 @@ function AuthLayout({
       <BlinkAnimation active={isFetching}>
         <div className="mt-6 h-10 w-full bg-cover">
           <img
-            src="/assets/logo.svg"
+            src="/assets/favicon-removebg-preview.png"
             className="h-full w-full object-contain"
             alt={localize('com_ui_logo', { 0: startupConfig?.appTitle ?? 'LibreChat' })}
           />
