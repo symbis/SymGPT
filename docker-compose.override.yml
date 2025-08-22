@@ -1,0 +1,20 @@
+version: '3.4'
+services:
+  api:
+    ports:
+      - "3080:3080"
+    volumes:
+      # Mount the entire compiled client directory
+      - type: bind
+        source: ./client/dist
+        target: /app/client/dist
+
+      # Custom assets directory
+      - type: bind
+        source: ./client/public/assets
+        target: /app/client/public/assets
+
+      # LibreChat configuration
+      - type: bind
+        source: ./librechat.yaml
+        target: /app/librechat.yaml

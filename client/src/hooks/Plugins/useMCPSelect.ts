@@ -5,7 +5,6 @@ import type { TPlugin } from 'librechat-data-provider';
 import { useAvailableToolsQuery, useGetStartupConfig } from '~/data-provider';
 import useLocalStorage from '~/hooks/useLocalStorageAlt';
 import { ephemeralAgentByConvoId } from '~/store';
-import { useChatContext } from '~/Providers';
 
 const storageCondition = (value: unknown, rawCurrentValue?: string | null) => {
   if (rawCurrentValue) {
@@ -21,14 +20,12 @@ const storageCondition = (value: unknown, rawCurrentValue?: string | null) => {
   return Array.isArray(value) && value.length > 0;
 };
 
-export function useMCPSelect() {
-  const { conversation } = useChatContext();
+interface UseMCPSelectOptions {
+  conversationId?: string | null;
+}
 
-  const key = useMemo(
-    () => conversation?.conversationId ?? Constants.NEW_CONVO,
-    [conversation?.conversationId],
-  );
-
+export function useMCPSelect({ conversationId }: UseMCPSelectOptions) {
+  const key = conversationId ?? Constants.NEW_CONVO;
   const hasSetFetched = useRef<string | null>(null);
   const [ephemeralAgent, setEphemeralAgent] = useRecoilState(ephemeralAgentByConvoId(key));
   const { data: startupConfig } = useGetStartupConfig();
