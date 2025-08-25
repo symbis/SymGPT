@@ -3,6 +3,12 @@ services:
   api:
     ports:
       - "3080:3080"
+    environment:
+      - MONGO_URI=mongodb+srv://symgptadmin:qC86&atswUWNE3@sym-we-cosmos-d01.mongocluster.cosmos.azure.com/symgpt?tls=true&authMechanism=SCRAM-SHA-256&retrywrites=false&maxIdleTimeMS=120000    
+      - AZURE_STORAGE_CONNECTION_STRING=DefaultEndpointsProtocol=https;AccountName=symwestorage01;AccountKey=xq41cNlVEbtkjjTYObnKQ9zW4vb3+xJmTAHuoiNn6jrX4/Gi78sD0xUDvWBsxIhW/vSjTJIA9Fxq+ASt9Cs7Mw==;EndpointSuffix=core.windows.net
+      - AZURE_STORAGE_PUBLIC_ACCESS=true
+      - AZURE_CONTAINER_NAME=files
+
     volumes:
       # Mount the entire compiled client directory
       - type: bind
@@ -18,3 +24,9 @@ services:
       - type: bind
         source: ./librechat.yaml
         target: /app/librechat.yaml
+
+  # Disable MongoDB service
+  mongodb:
+    deploy:
+      replicas: 0
+

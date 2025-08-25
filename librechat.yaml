@@ -1,6 +1,7 @@
 # LibreChat Configuration - Alleen GPT-4.1 Model met Agents
 version: 1.2.8
 cache: true
+fileStrategy: "azure_blob"
 
 # Interface settings - geoptimaliseerd voor modelSpecs enforce
 interface:
@@ -12,7 +13,7 @@ interface:
   prompts: true
   bookmarks: false
   multiConvo: false
-  customFooter: "SymGPT | Powered by Symbis"
+  customWelcome: "Waar wil je vandaag samen aan werken?"
   agents: true
   runCode: false
 
