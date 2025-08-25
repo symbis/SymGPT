@@ -10,10 +10,11 @@ interface:
   sidePanel: true
   presets: false        # niet nodig bij enforce: true, voorkomt conflicten
   prompts: true
-  bookmarks: true
+  bookmarks: false
   multiConvo: false
   customFooter: "SymGPT | Powered by Symbis"
   agents: true
+  runCode: false
 
 # Azure OpenAI configuration - restrictief om alleen ons model te tonen
 endpoints:
