@@ -43,3 +43,27 @@ Thumbs.db
 
 # Keep .env.example as template
 !.env.example
+
+# 🛡️ Security & Backup files (prevent large files in Git)
+*.tgz
+*.tar.gz
+*.zip
+*.bak
+*.backup
+*.dump
+*.sql
+
+# MongoDB backup files
+mongosh-*
+mongo-backup-*
+*.mongodump
+
+# Large binary files
+*.so
+*.dll
+*.exe
+
+# Temporary files
+*.tmp
+*.temp
+
