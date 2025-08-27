@@ -1,0 +1,31 @@
+tree c08744b91321a74c71c64e2d2d9430ab2504fd1d
+parent 04502e9525020e93a4e49afc55b93aec23f342bf
+author Yuichi Oneda <ohneda@gmail.com> 1718464323 -0700
+committer GitHub <noreply@github.com> 1718464323 -0400
+gpgsig -----BEGIN PGP SIGNATURE-----
+ 
+ wsFcBAABCAAQBQJmba9DCRC1aQ7uu5UhlAAAu6EQAG/tE5DnQ8V01S6/Ik/KIID/
+ jGLRpfhcInXe6JmXS5UPbrIIYuBwPOac9PPw1068mya3wji6ZGyXb9saF+kCtSNE
+ 02bY4zx4sNtPHybvt4S9ML2i0BSUwKhMwSSJbsesO76qgCxgUcC8cagBqx2P4jW7
+ hdmT8hZi+SY1O8kSDHdOTH3+/XxlBdY8gTSybuqiV1c9TC5mXzhnNogWdbrcTVLn
+ rdkNcTDj/1BYUb/ZcX60sXd5rJ3AWIYcOhSGb95bnATPqojpfKbEYQCrl9v6EDjL
+ 00v14Bnf/EPPMwx0nfzSsbO0UyKVJvJa8nnSFoDIAG8erUmoQQYC2nWzatoQbo07
+ AG9aopCY9i/jnU5YsI3qgVM7vtaThJImPJeMw/Ezhnt1Xv+vdqmZ8WVCN0yhNI/o
+ 7EfDSueeGra0xri0SlXOCLAe1PxDFYqEezEMtu0AcZ+5A1Hmo6wA/tHkZEtYXxxh
+ IODAZal3LjWlMxQHRkbkQV3MlBbFLB88xrq6ghjGFtlsOcW8HyuU3x/owhGBjZ9P
+ fW3kFPijR9hRmOZ1ZlMIp0KNE9bYZEXKMZg585v4xIze1ZZmmr/T6CmTKaGdA3NN
+ L2AgTb7nqMJK7461Z6/RnHTOVCYFO+HLt8cqd9LtCDVqpegDxh8IGSffq8RpPMBm
+ EGhkuJFtC+JYGL8Q3GVp
+ =q5Is
+ -----END PGP SIGNATURE-----
+ 
+
+🚀 feat: Add Option to Disable Shared Links (#2986)
+
+* feat: add option to disable shared links
+
+* chore: update languages
+
+---------
+
+Co-authored-by: Danny Avila <danny@librechat.ai>
