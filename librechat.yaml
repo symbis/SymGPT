@@ -16,6 +16,30 @@ interface:
   agents: true
   runCode: false
 
+# Speech configuratie - ALLEEN STT (Whisper), GEEN TTS
+speech:
+  speechTab:
+    conversationMode: true
+    advancedMode: false
+    speechToText:
+      engineSTT: "external"
+      languageSTT: "Dutch (Netherlands)"
+      autoTranscribeAudio: true
+      decibelValue: -45
+      autoSendText: 0
+    textToSpeech:
+      engineTTS: "browser"  # Browser TTS uitgeschakeld
+      automaticPlayback: false
+
+  # Alleen Speech-to-Text configuratie (Azure OpenAI Whisper)
+  stt:
+    azureOpenAI:
+      instanceName: 'scheepstextiel-123-resource'
+      apiKey: '${STT_API_KEY}'
+      deploymentName: 'whisper'
+      apiVersion: '2024-06-01'
+
+
 endpoints:
   azureOpenAI:
     titleConvo: true
@@ -71,7 +95,7 @@ modelSpecs:
     - agents
   list:
     - name: "symgpt"
-      label: "SymGPT"
+      label: "SymGPT (gpt-4.1)"
       default: true
       description: "Snelle en betrouwbare AI voor dagelijkse taken"
       iconURL: "assets/favicon-removebg-preview.png"
@@ -86,7 +110,7 @@ modelSpecs:
         greeting: "Welkom bij SymGPT! Ik sta klaar om je te helpen!"
         promptPrefix: |
           # Rol
-          Jij bent SymGPT, een digitale collega, gebaseerd op de GPT-5-architectuur. Je helpt alle medewerkers—technisch, inhoudelijk, adviserend of ondersteunend. Je denkt mee, geeft uitleg, schrijft mee en reageert alsof je deel uitmaakt van het team. Alles wat je doet, voelt herkenbaar, menselijk en behulpzaam. Jij communiceert altijd in de stijl van Symbis.
+          Jij bent SymGPT, een digitale collega, gebaseerd op de GPT-4.1 architectuur. Je helpt alle medewerkers—technisch, inhoudelijk, adviserend of ondersteunend. Je denkt mee, geeft uitleg, schrijft mee en reageert alsof je deel uitmaakt van het team. Alles wat je doet, voelt herkenbaar, menselijk en behulpzaam. Jij communiceert altijd in de stijl van Symbis.
 
           # Symbis-stijl (Tone of Voice)
 
@@ -140,7 +164,7 @@ modelSpecs:
           Vandaag is het: **{{current_date}}**
 
     - name: "symgpt-pro"
-      label: "SymGPT Pro"
+      label: "SymGPT Pro (gpt-5)"
       default: false
       description: "Geavanceerde AI met diepe redeneercapaciteiten voor complexe problemen"
       iconURL: "assets/favicon-removebg-preview.png"
@@ -216,9 +240,9 @@ modelSpecs:
           - **Kwaliteit**: fact-check licht waar mogelijk; voorkom hallucinaties; geen placeholders.
 
     - name: "symgpt-websearch"
-      label: "Websearch"
-      description: "Live web search via externe bron"
-      iconURL: "globe"
+      label: "Websearch (Perplexity)"
+      description: "🚨 WAARSCHUWING: Dit model zoekt actief op internet. Deel geen vertrouwelijke of gevoelige informatie. Gebruik alleen voor openbare informatie."
+      iconURL: "https://uxwing.com/wp-content/themes/uxwing/download/signs-and-symbols/exclamation-warning-round-red-icon.png"
       showIconInMenu: true
       showIconInHeader: true
       preset:
@@ -228,18 +252,3 @@ modelSpecs:
         greeting: "Websearch geeft toegang tot informatie van buiten dit systeem. Resultaten kunnen incompleet of onnauwkeurig zijn. Gebruik dit alleen als je expliciet online wilt zoeken."
         temperature: 0.3
         promptPrefix: "Additional Rules: 1. Always print the full URL in brackets after the Citation Number instead of just the Citation Number; 2. Ensure responses are concise and relevant; 3. Always cite the sources of your web search"
-
-    - name: "symgpt-deepsearch"
-      label: "Deep Research"
-      description: "Diepgaand onderzoek via externe bron"
-      iconURL: "globe"
-      showIconInMenu: true
-      showIconInHeader: true
-      preset:
-        endpoint: "websearch-api"
-        model: "sonar-deep-research"
-        modelLabel: "Deep Research"
-        greeting: "Deep Research voert uitgebreid onderzoek uit met online bronnen. Houd rekening met risico’s: informatie kan foutief of onvolledig zijn en valt buiten onze beveiliging."
-        temperature: 0.3
-        promptPrefix: "Additional Rules: 1. Always print the full URL in brackets after the Citation Number instead of just the Citation Number; 2. Ensure responses are concise and relevant; 3. Always cite the sources of your web search"
-
