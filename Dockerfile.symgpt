@@ -1,0 +1,23 @@
+# ------------------------------------------------------------
+# SymGPT overlay bovenop officiële LibreChat image
+# - Base: ghcr.io/danny-avila/librechat:<TAG>
+# - We kopiëren alleen onze eigen dist + assets + librechat.yaml
+# ------------------------------------------------------------
+
+# Kies hier de LibreChat versie/tag die jij wilt
+FROM ghcr.io/danny-avila/librechat:v0.8.0-rc2
+
+# 1) Jouw LibreChat configuratie (GEEN secrets hier)
+COPY ./librechat.yaml /app/librechat.yaml
+
+# 2) Jouw assets (logo’s, favicon, etc.)
+#    Deze overschrijven de assets in de base image
+COPY ./client/public/assets /app/client/public/assets
+
+# 3) Jouw gecompileerde frontend (houdt je branding, CSS, icons, teksten)
+#    Dit is wat je eerder mountte; nu bakken we het in de image.
+#    Vereist dat ./client/dist bestaat in je build context.
+COPY ./client/dist /app/client/dist
+
+# Poort is al 3080 in de base image, CMD komt ook uit de base image.
+# Klaar :)
