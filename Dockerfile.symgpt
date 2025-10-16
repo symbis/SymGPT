@@ -1,0 +1,14 @@
+# ------------------------------------------------------------
+# SymGPT overlay bovenop officiële LibreChat (GEEN :latest)
+# ------------------------------------------------------------
+ARG BASE_TAG=v0.8.0
+FROM ghcr.io/danny-avila/librechat:${BASE_TAG}
+
+# LibreChat config (geen secrets)
+COPY ./librechat.yaml /app/librechat.yaml
+
+# Jouw assets en build (branding, css, icons, teksten)
+COPY ./client/public/assets /app/client/public/assets
+COPY ./client/dist /app/client/dist
+
+# Poort 3080 is in base al EXPOSEd en CMD is backend
