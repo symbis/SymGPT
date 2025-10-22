@@ -15,3 +15,6 @@ docs
 
 # Ignore all hidden files
 .*
+
+# Allow main configuration file to be copied into Docker overlay
+!librechat.yaml

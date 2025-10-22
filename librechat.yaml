@@ -20,7 +20,8 @@ fileConfig:
   text:
     supportedMimeTypes:
       - "^application/pdf$"
-      - "^text/(plain|markdown|csv|json|xml|html|css|javascript|typescript|x-python|x-java|x-csharp|x-php|x-ruby|x-go|x-rust|x-kotlin|x-swift|x-scala|x-perl|x-lua|x-shell|x-sql|x-yaml|x-toml)$"
+      - "^application/json$"  # toegevoegd
+      - "^text/(plain|markdown|csv|xml|html|css|javascript|typescript|x-python|x-java|x-csharp|x-php|x-ruby|x-go|x-rust|x-kotlin|x-swift|x-scala|x-perl|x-lua|x-shell|x-sql|x-yaml|x-toml)$"
       - "^application/vnd\\.openxmlformats-officedocument\\.(wordprocessingml\\.document|presentationml\\.presentation|spreadsheetml\\.sheet)$"
       - "^application/vnd\\.ms-(word|powerpoint|excel)$"
 
@@ -34,15 +35,25 @@ fileConfig:
       fileSizeLimit: 50
       totalSizeLimit: 300
       supportedMimeTypes:
-        - "image/.*"
-        - "application/pdf"
+        - "^image/.*$"
+        - "^application/pdf$"
+        - "^application/json$"   # toegevoegd
         - "^application/vnd\\.openxmlformats-officedocument\\.(wordprocessingml\\.document|presentationml\\.presentation|spreadsheetml\\.sheet)$"
         - "^application/vnd\\.ms-(word|powerpoint|excel)$"
-        - "^text/.*"
+        - "^text/.*$"
+        - "^audio/(mp3|mpeg|mpeg3|wav|wave|x-wav|ogg|vorbis|mp4|x-m4a|flac|x-flac|webm)$"  # toegevoegd
     default:
       fileLimit: 10
       fileSizeLimit: 50
       totalSizeLimit: 300
+      supportedMimeTypes:
+        - "^image/.*$"
+        - "^application/pdf$"
+        - "^application/json$"
+        - "^application/vnd\\.openxmlformats-officedocument\\.(wordprocessingml\\.document|presentationml\\.presentation|spreadsheetml\\.sheet)$"
+        - "^application/vnd\\.ms-(word|powerpoint|excel)$"
+        - "^text/.*$"
+        - "^audio/(mp3|mpeg|mpeg3|wav|wave|x-wav|ogg|vorbis|mp4|x-m4a|flac|x-flac|webm)$"
 
 interface:
   endpointsMenu: false
@@ -121,7 +132,7 @@ modelSpecs:
     - agents
   list:
     - name: "symgpt"
-      label: "SymGPT (gpt-4.1)"
+      label: "SymGPT"
       default: true
       description: "Snelle en betrouwbare AI voor dagelijkse taken"
       iconURL: "/assets/favicon-removebg-preview.png"
@@ -210,7 +221,7 @@ modelSpecs:
           Datum vandaag is: **{{current_date}}**
           
     - name: "symgpt-pro"
-      label: "SymGPT Pro (gpt-5)"
+      label: "SymGPT Pro"
       default: false
       description: "Geavanceerde AI met diepe redeneercapaciteiten voor complexe problemen"
       iconURL: "/assets/favicon-removebg-preview.png"

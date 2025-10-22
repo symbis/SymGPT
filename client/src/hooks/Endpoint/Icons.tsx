@@ -4,7 +4,6 @@ import {
   MinimalPlugin,
   GPTIcon,
   AnthropicIcon,
-  AzureMinimalIcon,
   GoogleMinimalIcon,
   CustomMinimalIcon,
   AssistantIcon,
@@ -60,8 +59,12 @@ const Bedrock = ({ className = '' }: IconMapProps) => {
   return <BedrockIcon className={cn(className, 'h-full w-full')} />;
 };
 
+const SymbisIcon = ({ className = '' }: IconMapProps) => (
+  <img src="assets/logo.png" alt="SymGPT Icon" className={cn('h-full w-full object-contain', className)} />
+);
+
 export const icons: IconsRecord = {
-  [EModelEndpoint.azureOpenAI]: AzureMinimalIcon,
+  [EModelEndpoint.azureOpenAI]: SymbisIcon,
   [EModelEndpoint.openAI]: GPTIcon,
   [EModelEndpoint.gptPlugins]: MinimalPlugin,
   [EModelEndpoint.anthropic]: AnthropicIcon,

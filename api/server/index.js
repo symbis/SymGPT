@@ -85,10 +85,90 @@ const startServer = async () => {
   app.use(cors());
   app.use(cookieParser());
 
+  /* Minimal security headers (compatible with ACA edge TLS) */
+  app.use((req, res, next) => {
+    try {
+      res.set({
+        'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload',
+        'X-Content-Type-Options': 'nosniff',
+        'Referrer-Policy': 'strict-origin-when-cross-origin',
+        'Cross-Origin-Opener-Policy': 'same-origin',
+        'Cross-Origin-Resource-Policy': 'same-origin',
+        'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), fullscreen=(self)',
+      });
+
+      const connectSrc = [
+        "'self'",
+        process.env.DOMAIN_SERVER || 'http://localhost:3080',
+        'https://login.microsoftonline.com',
+        'https://graph.microsoft.com',
+        'https://*.sharepoint.com',
+        'https://*.office.com',
+      ].join(' ');
+
+      const csp = [
+        "default-src 'self'",
+        "img-src 'self' data: blob: https:",
+        "style-src 'self' 'unsafe-inline'",
+        "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+        `connect-src ${connectSrc}`,
+      ].join('; ');
+
+      res.setHeader('Content-Security-Policy', csp);
+    } catch (_err) {
+      /* noop */
+    }
+    next();
+  });
+
   if (!isEnabled(DISABLE_COMPRESSION)) {
     app.use(compression());
   } else {
     console.warn('Response compression has been disabled via DISABLE_COMPRESSION.');
+  }
+
+  /* Ensure correct MIME for PWA artifacts */
+  try {
+    const manifestPath = path.join(appConfig.paths.dist, 'manifest.webmanifest');
+    app.get('/manifest.webmanifest', (_req, res, next) => {
+      try {
+        if (fs.existsSync(manifestPath)) {
+          res.type('application/manifest+json');
+          return res.sendFile(manifestPath);
+        }
+      } catch (_e) {
+        /* fall through */
+      }
+      next();
+    });
+
+    const siteManifestPath = path.join(appConfig.paths.assets, 'site.webmanifest');
+    app.get('/site.webmanifest', (_req, res, next) => {
+      try {
+        if (fs.existsSync(siteManifestPath)) {
+          res.type('application/manifest+json');
+          return res.sendFile(siteManifestPath);
+        }
+      } catch (_e) {
+        /* fall through */
+      }
+      next();
+    });
+
+    const swPath = path.join(appConfig.paths.dist, 'sw.js');
+    app.get('/sw.js', (_req, res, next) => {
+      try {
+        if (fs.existsSync(swPath)) {
+          res.set('Cache-Control', 'no-store, no-cache, must-revalidate');
+          return res.sendFile(swPath);
+        }
+      } catch (_e) {
+        /* fall through */
+      }
+      next();
+    });
+  } catch (_e) {
+    /* noop */
   }
 
   app.use(staticCache(appConfig.paths.dist));
