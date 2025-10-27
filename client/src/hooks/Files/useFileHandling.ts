@@ -74,7 +74,7 @@ const useFileHandling = (params?: UseFileHandling) => {
       showToast({
         message: errorList,
         status: 'error',
-        duration: 5000,
+        duration: 12000,
       });
     } else if (errors.length === 1) {
       // TODO: this should not be a dynamic localize input!!
@@ -82,7 +82,7 @@ const useFileHandling = (params?: UseFileHandling) => {
       showToast({
         message,
         status: 'error',
-        duration: 5000,
+        duration: 12000,
       });
     }
 

@@ -373,5 +373,6 @@
   "com_ui_unarchive": "Uit archiveren",
   "com_ui_unarchive_error": "Kan conversatie niet uit archiveren",
   "com_ui_upload_success": "Bestand succesvol geüpload",
-  "com_ui_upload_delay": "We werken nog aan \"{{0}}\". Even geduld, we zetten alles voor je klaar."
+  "com_ui_upload_delay": "We werken nog aan \"{{0}}\". Even geduld, we zetten alles voor je klaar.",
+  "com_error_files_upload": "We konden dit bestand niet afronden. Controleer of het bestandstype wordt ondersteund en binnen ongeveer één miljoen tokens blijft, en probeer het daarna opnieuw."
 }
